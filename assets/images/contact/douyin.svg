@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title>抖音图标</title>
+  <defs>
+    <linearGradient id="douyin-bg" x1="11" y1="8" x2="54" y2="58" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#8bd1ff"/>
+      <stop offset="1" stop-color="#2d5ccf"/>
+    </linearGradient>
+  </defs>
+  <rect x="6" y="6" width="52" height="52" rx="16" fill="url(#douyin-bg)"/>
+  <path d="M35 19v17.5a7 7 0 1 1-3-5.67V19h3Zm7 4.5a9.8 9.8 0 0 0 5 3v3.47A12.65 12.65 0 0 1 42 27.9v-4.4Z" fill="#f7fbff"/>
+</svg>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title>小红书图标</title>
+  <defs>
+    <linearGradient id="xhs-bg" x1="9" y1="8" x2="56" y2="57" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#8fd4ff"/>
+      <stop offset="1" stop-color="#3557d7"/>
+    </linearGradient>
+  </defs>
+  <rect x="6" y="6" width="52" height="52" rx="16" fill="url(#xhs-bg)"/>
+  <rect x="18" y="18" width="28" height="28" rx="8" fill="none" stroke="#f7fbff" stroke-width="3"/>
+  <path d="M23 26h18M23 32h12M23 38h16" fill="none" stroke="#f7fbff" stroke-linecap="round" stroke-width="3.2"/>
+</svg>
