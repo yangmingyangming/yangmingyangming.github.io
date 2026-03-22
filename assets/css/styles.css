@@ -1207,11 +1207,12 @@ section {
 }
 
 .skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-  gap: 0.95rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0;
   list-style: none;
-  perspective: 900px;
+  margin: 0;
+  padding: 0;
 }
 
 .skills-intro {
@@ -1222,14 +1223,98 @@ section {
   line-height: 1.78;
 }
 
+.practice-board {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.practice-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid rgba(120, 182, 255, 0.28);
+}
+
+.practice-head .section-heading {
+  margin: 0;
+}
+
+.practice-head-en {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #d6e7ff;
+}
+
+.practice-item {
+  display: grid;
+  gap: 0.8rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid rgba(120, 182, 255, 0.18);
+}
+
+.practice-item:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.practice-item-top {
+  display: grid;
+  grid-template-columns: minmax(180px, 220px) minmax(0, 1fr) auto;
+  gap: 0.9rem 1.3rem;
+  align-items: baseline;
+}
+
+.practice-date,
+.practice-role {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: #e7f1ff;
+}
+
+.practice-title {
+  margin: 0;
+  font-size: 1.55rem;
+  line-height: 1.35;
+  color: #edf4ff;
+}
+
+.practice-points {
+  margin: 0;
+  padding-left: 1.25rem;
+  display: grid;
+  gap: 0.36rem;
+}
+
+.practice-points li {
+  color: #c9daf0;
+  line-height: 1.7;
+}
+
 .skills-groups {
   display: grid;
-  gap: 1.2rem;
+  gap: 1rem;
+  padding: 1.1rem;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 24px;
+  background: linear-gradient(170deg, rgba(255, 255, 255, 0.02), rgba(120, 182, 255, 0.05));
 }
 
 .skills-group {
   display: grid;
   gap: 0.7rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(120, 182, 255, 0.16);
+}
+
+.skills-group:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
 }
 
 .skills-group-title {
@@ -1252,70 +1337,41 @@ section {
 }
 
 .skill-chip {
-  --chip-rotate-x: 0deg;
-  --chip-rotate-y: 0deg;
-  --chip-lift: 0px;
   --chip-entry: 0px;
-  --chip-gloss-x: 50%;
-  --chip-gloss-y: 20%;
-  min-height: 132px;
-  background: linear-gradient(160deg, rgba(255, 255, 255, 0.03), rgba(120, 182, 255, 0.06) 65%, rgba(120, 182, 255, 0.02));
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 20px;
-  padding: 1rem 0.9rem 0.92rem;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  min-height: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: baseline;
   justify-content: flex-start;
+  gap: 0;
   text-align: left;
   font-size: 0.95rem;
   color: var(--text);
-  transform: translateY(calc(var(--chip-entry) + var(--chip-lift))) rotateX(var(--chip-rotate-x)) rotateY(var(--chip-rotate-y));
-  transform-style: preserve-3d;
-  transition: border-color 0.25s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.28s ease, opacity 0.4s ease;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
-  will-change: transform;
+  transform: translateY(var(--chip-entry));
+  transition: opacity 0.4s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
   overflow: hidden;
 }
 
 .skill-chip::before {
   content: "";
-  position: absolute;
-  inset: -45%;
-  background: radial-gradient(circle at var(--chip-gloss-x) var(--chip-gloss-y), rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0) 45%);
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.24s ease;
 }
 
 .skill-chip::after {
+  content: " / ";
+  color: rgba(156, 187, 226, 0.66);
+  margin: 0 0.45rem;
+}
+
+.skills-grid .skill-chip:last-child::after {
   content: "";
-  position: absolute;
-  inset: auto 0 0;
-  height: 2px;
-  background: linear-gradient(90deg, rgba(120, 182, 255, 0), rgba(185, 223, 255, 0.95), rgba(120, 182, 255, 0));
-  opacity: 0;
-  transform: scaleX(0.45);
-  transform-origin: center;
-  transition: opacity 0.26s ease, transform 0.32s ease;
+  margin: 0;
 }
 
-.skill-chip:hover {
-  --chip-lift: -6px;
-  border-color: var(--line-strong);
-  box-shadow: 0 18px 28px rgba(8, 15, 24, 0.24);
-}
 
-.skill-chip:hover::before,
-.skill-chip.is-interacting::before {
-  opacity: 1;
-}
-
-.skill-chip:hover::after,
-.skill-chip.is-interacting::after {
-  opacity: 1;
-  transform: scaleX(1);
-}
 
 .chip-reveal {
   --chip-entry: 20px;
@@ -1329,30 +1385,16 @@ section {
 }
 
 .skill-chip .icon {
-  width: 2.35rem;
-  height: 2.35rem;
-  display: inline-grid;
-  place-items: center;
-  margin-bottom: 0.78rem;
-  border-radius: 13px;
-  background: rgba(120, 182, 255, 0.12);
-  border: 1px solid rgba(157, 210, 255, 0.18);
-  font-size: 1.08rem;
-  transform: translateZ(14px);
+  display: none;
 }
 
 .skill-chip-meta {
-  font-size: 0.68rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: #8fa8ca;
-  margin-bottom: 0.46rem;
-  font-weight: 600;
+  display: none;
 }
 
 .skill-chip-title {
-  font-size: 1.01rem;
-  line-height: 1.52;
+  font-size: 0.98rem;
+  line-height: 1.45;
   color: #eaf3ff;
   font-weight: 600;
   text-wrap: balance;
@@ -1618,6 +1660,28 @@ html[data-theme="light"] .nav-links a {
 
 html[data-theme="light"] .skills-intro {
   color: #65758c;
+}
+
+html[data-theme="light"] .practice-head {
+  border-bottom-color: rgba(83, 110, 147, 0.34);
+}
+
+html[data-theme="light"] .practice-head-en {
+  color: #314865;
+}
+
+html[data-theme="light"] .practice-item {
+  border-bottom-color: rgba(92, 124, 166, 0.22);
+}
+
+html[data-theme="light"] .practice-title,
+html[data-theme="light"] .practice-date,
+html[data-theme="light"] .practice-role {
+  color: #1f2d40;
+}
+
+html[data-theme="light"] .practice-points li {
+  color: #3b4f6a;
 }
 
 html[data-theme="light"] .skills-group-title {
@@ -2105,21 +2169,35 @@ footer p {
   }
 
   .skills-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.8rem;
+    gap: 0.35rem 0;
   }
 
   .skills-groups {
     gap: 1rem;
   }
 
+  .practice-item-top {
+    grid-template-columns: 1fr;
+    gap: 0.3rem;
+  }
+
+  .practice-date,
+  .practice-role {
+    font-size: 1.02rem;
+  }
+
+  .practice-title {
+    font-size: 1.18rem;
+    line-height: 1.42;
+  }
+
   .skill-chip {
-    min-height: 118px;
-    padding: 0.88rem 0.78rem 0.84rem;
+    min-height: 0;
+    padding: 0;
   }
 
   .skill-chip .icon {
-    margin-bottom: 0.66rem;
+    display: none;
   }
 
   .skill-chip-title {

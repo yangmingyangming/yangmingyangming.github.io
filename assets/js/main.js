@@ -272,7 +272,7 @@ function bindSectionNavigationEffects() {
 }
 
 function bindSkillsInteractions() {
-  const skillSection = document.getElementById('skills');
+  const skillSection = document.getElementById('practice');
   if (!skillSection) {
     return;
   }
@@ -281,9 +281,6 @@ function bindSkillsInteractions() {
   if (!chips.length) {
     return;
   }
-
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const canUseFinePointer = window.matchMedia('(pointer: fine)').matches;
 
   chips.forEach((chip, index) => {
     chip.classList.add('chip-reveal');
@@ -305,35 +302,6 @@ function bindSkillsInteractions() {
   });
 
   chips.forEach((chip) => revealObserver.observe(chip));
-
-  if (prefersReducedMotion || !canUseFinePointer) {
-    return;
-  }
-
-  chips.forEach((chip) => {
-    chip.addEventListener('mousemove', (event) => {
-      const rect = chip.getBoundingClientRect();
-      const x = (event.clientX - rect.left) / rect.width;
-      const y = (event.clientY - rect.top) / rect.height;
-
-      const rotateY = (x - 0.5) * 10;
-      const rotateX = (0.5 - y) * 9;
-
-      chip.style.setProperty('--chip-rotate-x', rotateX.toFixed(2) + 'deg');
-      chip.style.setProperty('--chip-rotate-y', rotateY.toFixed(2) + 'deg');
-      chip.style.setProperty('--chip-gloss-x', (x * 100).toFixed(1) + '%');
-      chip.style.setProperty('--chip-gloss-y', (y * 100).toFixed(1) + '%');
-      chip.classList.add('is-interacting');
-    });
-
-    chip.addEventListener('mouseleave', () => {
-      chip.style.setProperty('--chip-rotate-x', '0deg');
-      chip.style.setProperty('--chip-rotate-y', '0deg');
-      chip.style.setProperty('--chip-gloss-x', '50%');
-      chip.style.setProperty('--chip-gloss-y', '20%');
-      chip.classList.remove('is-interacting');
-    });
-  });
 }
 
 function bindHomepageBackgroundEffects() {
