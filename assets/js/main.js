@@ -311,19 +311,38 @@ function bindHomepageBackgroundEffects() {
   }
 
   const root = document.documentElement;
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const canUseFinePointer = window.matchMedia('(pointer: fine)').matches;
-  const isSmallViewport = window.innerWidth < 980;
+  const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-  if (prefersReducedMotion || isSmallViewport) {
-    root.classList.add('is-mobile-effects-reduced');
-  }
+  const updateEffectsMode = () => {
+    const prefersReducedMotion = reducedMotionQuery.matches;
+    const isSmallViewport = window.innerWidth < 980;
+    root.classList.toggle('is-mobile-effects-reduced', prefersReducedMotion || isSmallViewport);
+    return {
+      prefersReducedMotion,
+      isSmallViewport,
+      canUseFinePointer: window.matchMedia('(pointer: fine)').matches
+    };
+  };
+
+  let effectMode = updateEffectsMode();
 
   const updateScrollProgress = () => {
     const doc = document.documentElement;
     const total = Math.max(1, doc.scrollHeight - window.innerHeight);
     const progress = Math.min(1, Math.max(0, window.scrollY / total));
     root.style.setProperty('--bg-scroll', progress.toFixed(4));
+  };
+
+  let scrollRafId = 0;
+  const scheduleScrollProgress = () => {
+    if (scrollRafId) {
+      return;
+    }
+
+    scrollRafId = window.requestAnimationFrame(() => {
+      updateScrollProgress();
+      scrollRafId = 0;
+    });
   };
 
   let rafId = 0;
@@ -347,6 +366,10 @@ function bindHomepageBackgroundEffects() {
   };
 
   const handleMouseMove = (event) => {
+    if (effectMode.prefersReducedMotion || effectMode.isSmallViewport || !effectMode.canUseFinePointer) {
+      return;
+    }
+
     targetX = (event.clientX / window.innerWidth) * 100;
     targetY = (event.clientY / window.innerHeight) * 100;
 
@@ -356,9 +379,13 @@ function bindHomepageBackgroundEffects() {
   };
 
   updateScrollProgress();
-  window.addEventListener('scroll', updateScrollProgress, { passive: true });
+  window.addEventListener('scroll', scheduleScrollProgress, { passive: true });
+  window.addEventListener('resize', () => {
+    effectMode = updateEffectsMode();
+    scheduleScrollProgress();
+  });
 
-  if (!prefersReducedMotion && canUseFinePointer && !isSmallViewport) {
+  if (!effectMode.prefersReducedMotion && effectMode.canUseFinePointer && !effectMode.isSmallViewport) {
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
   }
 }

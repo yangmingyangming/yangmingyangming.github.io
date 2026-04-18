@@ -109,9 +109,7 @@ html.is-theme-transitioning .side-dot {
     color 0.48s ease,
     background-color 0.48s ease,
     border-color 0.48s ease,
-    box-shadow 0.48s ease,
-    opacity 0.48s ease,
-    filter 0.48s ease !important;
+    box-shadow 0.48s ease !important;
 }
 
 body.has-art-cursor,
@@ -2347,17 +2345,24 @@ footer p {
 .is-mobile-effects-reduced .bg-aurora,
 .is-mobile-effects-reduced .bg-wave,
 .is-mobile-effects-reduced .bg-orb {
-  animation-duration: 30s;
-  animation-timing-function: linear;
+  animation: none !important;
 }
 
 .is-mobile-effects-reduced .bg-wave {
-  opacity: 0.2;
+  opacity: 0.14;
 }
 
 .is-mobile-effects-reduced .bg-orb {
-  opacity: 0.08;
-  filter: blur(40px);
+  opacity: 0.05;
+  filter: blur(16px);
+}
+
+.is-mobile-effects-reduced .bg-aurora {
+  filter: blur(4px) saturate(104%);
+}
+
+.is-mobile-effects-reduced .side-dot {
+  animation: none;
 }
 
 html[data-theme="light"] .nav-menu-toggle {

@@ -39,6 +39,7 @@
 
   let isVisible = false;
   let rafId = 0;
+  let lastPointerUpdate = 0;
 
   function setVariable(name, x, y) {
     root.style.setProperty(name + '-x', x.toFixed(2) + 'px');
@@ -64,7 +65,21 @@
     setVariable('--cursor-ring', pos.ringX, pos.ringY);
     setVariable('--cursor-glow', pos.glowX, pos.glowY);
 
-    rafId = requestAnimationFrame(animate);
+    const hasResidualMotion =
+      Math.abs(pos.targetX - pos.dotX) > 0.06 ||
+      Math.abs(pos.targetY - pos.dotY) > 0.06 ||
+      Math.abs(pos.targetX - pos.ringX) > 0.06 ||
+      Math.abs(pos.targetY - pos.ringY) > 0.06 ||
+      Math.abs(pos.targetX - pos.glowX) > 0.06 ||
+      Math.abs(pos.targetY - pos.glowY) > 0.06;
+    const recentlyUpdated = performance.now() - lastPointerUpdate < 120;
+
+    if (isVisible && (hasResidualMotion || recentlyUpdated)) {
+      rafId = requestAnimationFrame(animate);
+      return;
+    }
+
+    rafId = 0;
   }
 
   function ensureAnimation() {
@@ -88,6 +103,7 @@
   }
 
   function updateTarget(event) {
+    lastPointerUpdate = performance.now();
     pos.targetX = event.clientX;
     pos.targetY = event.clientY;
     showCursor();
@@ -115,6 +131,4 @@
       rafId = 0;
     }
   });
-
-  ensureAnimation();
 })();
