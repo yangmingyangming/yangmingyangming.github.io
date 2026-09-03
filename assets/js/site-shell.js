@@ -16,7 +16,7 @@
     const toolbar = document.querySelector('.floating-toolbar');
     if (toolbar) {
       toolbar.className = 'floating-toolbar editorial-detail-nav';
-      toolbar.innerHTML = `<a class="detail-nav-brand" href="../index.html#projects"><span class="nav-brand-mark">YM</span><span>杨茗 / WORKS</span></a><span class="detail-nav-title">${String(index + 1).padStart(2, '0')} / ${projects[index].title}</span><a class="detail-nav-back" href="../index.html#projects">全部作品 ↗</a>`;
+      toolbar.innerHTML = `<a class="detail-nav-brand" href="../index.html#projects"><span>杨茗 / WORKS</span></a><span class="detail-nav-title">${String(index + 1).padStart(2, '0')} / ${projects[index].title}</span><a class="detail-nav-back" href="../index.html#projects">全部作品 ↗</a>`;
     }
     page.querySelectorAll('h2, h3').forEach((heading, headingIndex) => {
       if (!heading.id) heading.id = `section-${headingIndex + 1}`;
