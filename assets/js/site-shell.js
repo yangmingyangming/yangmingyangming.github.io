@@ -1,169 +1,57 @@
-(function createSiteShell() {
-  const storageKey = 'portfolio-theme';
-  const themeRequestEvent = 'site-theme-request';
-  const themeChangeEvent = 'site-theme-change';
-  const transitionClass = 'is-theme-transitioning';
+(() => {
+  const projects = [
+    { slug: 'wisp', title: '浮愿 WiSP', href: 'wisp.html', cover: '../assets/images/optimized/wisp-cover.webp' },
+    { slug: 'xigua', title: 'RE:GROUND', href: 'xigua.html', cover: '../assets/images/optimized/xigua-cover.webp' },
+    { slug: 'brand-design', title: 'EVERLIFE', href: 'brand-design.html', cover: '../assets/images/optimized/brand-cover.webp' },
+    { slug: 'business-internship', title: '商业实习项目', href: 'business-internship.html', cover: '../assets/images/optimized/internship-cover.webp' },
+    { slug: 'aya-game', title: 'AYA / 阿娅', href: 'aya-game.html', cover: '../assets/images/optimized/aya-cover.webp' }
+  ];
 
-  let isThemeRequestBound = false;
-  let transitionTimerId = 0;
-  let transitionWash = null;
-
-  function isValidTheme(value) {
-    return value === 'dark' || value === 'light';
-  }
-
-  function readStoredTheme() {
-    try {
-      return localStorage.getItem(storageKey);
-    } catch (error) {
-      return null;
+  function initDetailShell() {
+    const page = document.querySelector('.page');
+    if (!page || document.body.classList.contains('home-page')) return;
+    const current = location.pathname.split('/').pop().replace('.html', '');
+    const index = projects.findIndex((project) => project.slug === current);
+    if (index < 0) return;
+    const toolbar = document.querySelector('.floating-toolbar');
+    if (toolbar) {
+      toolbar.className = 'floating-toolbar editorial-detail-nav';
+      toolbar.innerHTML = `<a class="detail-nav-brand" href="../index.html#projects"><span class="nav-brand-mark">YM</span><span>杨茗 / WORKS</span></a><span class="detail-nav-title">${String(index + 1).padStart(2, '0')} / ${projects[index].title}</span><a class="detail-nav-back" href="../index.html#projects">全部作品 ↗</a>`;
     }
-  }
-
-  function writeStoredTheme(theme) {
-    try {
-      localStorage.setItem(storageKey, theme);
-    } catch (error) {
-      // Ignore storage failures.
-    }
-  }
-
-  function ensureTransitionWash() {
-    if (transitionWash || !document.body) {
-      return transitionWash;
-    }
-
-    transitionWash = document.querySelector('.theme-transition-wash');
-    if (transitionWash) {
-      return transitionWash;
-    }
-
-    transitionWash = document.createElement('div');
-    transitionWash.className = 'theme-transition-wash';
-    transitionWash.setAttribute('aria-hidden', 'true');
-    document.body.appendChild(transitionWash);
-    return transitionWash;
-  }
-
-  function updateToggleUI(theme) {
-    document.querySelectorAll('.theme-toggle').forEach((toggle) => {
-      const isLight = theme === 'light';
-      const icon = toggle.querySelector('.theme-toggle-icon');
-
-      toggle.setAttribute('aria-pressed', String(isLight));
-      toggle.setAttribute('aria-label', isLight ? '切换到暗色主题' : '切换到亮色主题');
-
-      if (icon) {
-        icon.textContent = isLight ? '☀' : '☾';
-      }
+    page.querySelectorAll('h2, h3').forEach((heading, headingIndex) => {
+      if (!heading.id) heading.id = `section-${headingIndex + 1}`;
     });
-  }
-
-  function playThemeTransition(nextTheme) {
-    const root = document.documentElement;
-    const wash = ensureTransitionWash();
-
-    if (!wash || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      return;
+    const heroSummary = page.querySelector('.hero-summary');
+    if (heroSummary && !page.querySelector('.detail-hero-media')) {
+      const cover = document.createElement('figure');
+      cover.className = 'detail-hero-media';
+      cover.innerHTML = `<img src="${projects[index].cover}" alt="${projects[index].title} 项目封面" fetchpriority="high"><figcaption>${String(index + 1).padStart(2, '0')} / Selected project</figcaption>`;
+      heroSummary.insertAdjacentElement('afterend', cover);
     }
-
-    if (transitionTimerId) {
-      window.clearTimeout(transitionTimerId);
-      transitionTimerId = 0;
+    const headings = [...page.querySelectorAll('h2[id]')];
+    if (headings.length > 1 && !page.querySelector('.detail-index')) {
+      const indexNav = document.createElement('nav');
+      indexNav.className = 'detail-index';
+      indexNav.setAttribute('aria-label', '项目章节');
+      indexNav.innerHTML = headings.map((heading, headingIndex) => `<a href="#${heading.id}">${String(headingIndex + 1).padStart(2, '0')} ${heading.textContent.trim()}</a>`).join('');
+      (heroSummary || page.querySelector('.hero')).insertAdjacentElement('afterend', indexNav);
     }
-
-    root.classList.remove('is-theme-transition-light', 'is-theme-transition-dark');
-    root.classList.add(transitionClass, nextTheme === 'light' ? 'is-theme-transition-light' : 'is-theme-transition-dark');
-
-    wash.classList.remove('is-active', 'is-light', 'is-dark');
-    void wash.offsetWidth;
-    wash.classList.add('is-active', nextTheme === 'light' ? 'is-light' : 'is-dark');
-
-    transitionTimerId = window.setTimeout(() => {
-      root.classList.remove(transitionClass, 'is-theme-transition-light', 'is-theme-transition-dark');
-      wash.classList.remove('is-active', 'is-light', 'is-dark');
-      transitionTimerId = 0;
-    }, 560);
-  }
-
-  function applyTheme(theme, options = {}) {
-    const root = document.documentElement;
-    const { persist = false, emit = true, animate = true } = options;
-    const nextTheme = isValidTheme(theme) ? theme : 'dark';
-
-    if (animate && root.dataset.theme && root.dataset.theme !== nextTheme) {
-      playThemeTransition(nextTheme);
-    }
-
-    root.dataset.theme = nextTheme;
-    updateToggleUI(nextTheme);
-
-    if (persist) {
-      writeStoredTheme(nextTheme);
-    }
-
-    if (emit) {
-      document.dispatchEvent(new CustomEvent(themeChangeEvent, {
-        detail: { theme: nextTheme }
-      }));
-    }
-  }
-
-  function bindThemeRequest() {
-    if (isThemeRequestBound) {
-      return;
-    }
-
-    document.addEventListener(themeRequestEvent, (event) => {
-      const requestedTheme = event?.detail?.theme;
-      if (!isValidTheme(requestedTheme)) {
-        return;
-      }
-
-      applyTheme(requestedTheme, { persist: true, emit: true });
-    });
-
-    isThemeRequestBound = true;
-  }
-
-  function initThemeToggle() {
-    bindThemeRequest();
-
-    const storedTheme = readStoredTheme();
-    applyTheme(isValidTheme(storedTheme) ? storedTheme : 'dark', { emit: true, animate: false });
-
-    document.querySelectorAll('.theme-toggle').forEach((toggle) => {
-      if (toggle.dataset.themeToggleBound === 'true') {
-        return;
-      }
-
-      toggle.dataset.themeToggleBound = 'true';
-      toggle.addEventListener('click', () => {
-        const current = document.documentElement.dataset.theme === 'light' ? 'light' : 'dark';
-        const next = current === 'light' ? 'dark' : 'light';
-        applyTheme(next, { persist: true, emit: true });
-      });
-    });
-  }
-
-  function initFloatingToolbar(selector = '.floating-toolbar', threshold = 24) {
-    const toolbar = document.querySelector(selector);
-    if (!toolbar || toolbar.dataset.toolbarBound === 'true') {
-      return;
-    }
-
-    toolbar.dataset.toolbarBound = 'true';
-
-    const toggleToolbar = () => {
-      toolbar.classList.toggle('is-expanded', window.scrollY > threshold);
-    };
-
-    toggleToolbar();
-    window.addEventListener('scroll', toggleToolbar, { passive: true });
+    const footer = document.createElement('nav');
+    footer.className = 'project-next-nav';
+    const previous = projects[(index - 1 + projects.length) % projects.length];
+    const next = projects[(index + 1) % projects.length];
+    footer.innerHTML = `<a href="${previous.href}"><span>Previous</span><strong>${previous.title} ↖</strong></a><a href="${next.href}"><span>Next project</span><strong>${next.title} ↗</strong></a>`;
+    const footerNote = page.querySelector('.footer-note');
+    page.insertBefore(footer, footerNote || null);
   }
 
   window.SiteShell = {
-    initThemeToggle,
-    initFloatingToolbar
+    initDetailShell,
+    initThemeToggle() {},
+    initFloatingToolbar(selector = '.floating-toolbar') {
+      const toolbar = document.querySelector(selector);
+      if (toolbar) toolbar.classList.add('is-expanded');
+    }
   };
+  document.addEventListener('DOMContentLoaded', initDetailShell);
 })();
