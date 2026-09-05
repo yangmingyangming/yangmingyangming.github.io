@@ -1,0 +1,352 @@
+{
+  "portrait": {
+    "src": "./media/portrait.webp",
+    "width": 900,
+    "height": 1350
+  },
+  "businessCover": {
+    "src": "./media/covers/business-internship.webp",
+    "width": 1200,
+    "height": 675
+  },
+  "wispCover": {
+    "src": "./media/covers/wisp.webp",
+    "width": 1200,
+    "height": 675
+  },
+  "ayaCover": {
+    "src": "./media/covers/aya.webp",
+    "width": 1200,
+    "height": 891
+  },
+  "regroundCover": {
+    "src": "./media/covers/reground.webp",
+    "width": 1200,
+    "height": 675
+  },
+  "everlifeCover": {
+    "src": "./media/covers/everlife.webp",
+    "width": 1200,
+    "height": 675
+  },
+  "wisp01": {
+    "src": "./media/projects/wisp/01.webp",
+    "width": 1800,
+    "height": 1013
+  },
+  "wisp02": {
+    "src": "./media/projects/wisp/02.webp",
+    "width": 1800,
+    "height": 1178
+  },
+  "wisp03": {
+    "src": "./media/projects/wisp/03.webp",
+    "width": 1800,
+    "height": 2128
+  },
+  "wisp04": {
+    "src": "./media/projects/wisp/04.webp",
+    "width": 1800,
+    "height": 1013
+  },
+  "wisp05": {
+    "src": "./media/projects/wisp/05.webp",
+    "width": 1800,
+    "height": 1013
+  },
+  "wisp06": {
+    "src": "./media/projects/wisp/06.webp",
+    "width": 1800,
+    "height": 1013
+  },
+  "wisp07": {
+    "src": "./media/projects/wisp/07.webp",
+    "width": 1800,
+    "height": 1297
+  },
+  "wisp08": {
+    "src": "./media/projects/wisp/08.webp",
+    "width": 1800,
+    "height": 1547
+  },
+  "wisp09": {
+    "src": "./media/projects/wisp/09.webp",
+    "width": 1800,
+    "height": 1159
+  },
+  "wisp10": {
+    "src": "./media/projects/wisp/10.webp",
+    "width": 1800,
+    "height": 1603
+  },
+  "wisp11": {
+    "src": "./media/projects/wisp/11.webp",
+    "width": 1800,
+    "height": 1973
+  },
+  "aya01": {
+    "src": "./media/projects/aya/01.webp",
+    "width": 1800,
+    "height": 1013
+  },
+  "aya02": {
+    "src": "./media/projects/aya/02.webp",
+    "width": 1800,
+    "height": 1013
+  },
+  "aya03": {
+    "src": "./media/projects/aya/03.webp",
+    "width": 1800,
+    "height": 1013
+  },
+  "aya04": {
+    "src": "./media/projects/aya/04.webp",
+    "width": 1800,
+    "height": 1013
+  },
+  "aya05": {
+    "src": "./media/projects/aya/05.webp",
+    "width": 1800,
+    "height": 1013
+  },
+  "aya06": {
+    "src": "./media/projects/aya/06.webp",
+    "width": 1800,
+    "height": 1013
+  },
+  "aya07": {
+    "src": "./media/projects/aya/07.webp",
+    "width": 1800,
+    "height": 1013
+  },
+  "aya08": {
+    "src": "./media/projects/aya/08.webp",
+    "width": 1800,
+    "height": 1013
+  },
+  "aya09": {
+    "src": "./media/projects/aya/09.webp",
+    "width": 1800,
+    "height": 1013
+  },
+  "aya10": {
+    "src": "./media/projects/aya/10.webp",
+    "width": 1800,
+    "height": 1013
+  },
+  "aya11": {
+    "src": "./media/projects/aya/11.webp",
+    "width": 1800,
+    "height": 1013
+  },
+  "aya12": {
+    "src": "./media/projects/aya/12.webp",
+    "width": 1800,
+    "height": 1013
+  },
+  "aya13": {
+    "src": "./media/projects/aya/13.webp",
+    "width": 1800,
+    "height": 1013
+  },
+  "aya14": {
+    "src": "./media/projects/aya/14.webp",
+    "width": 1800,
+    "height": 1013
+  },
+  "aya15": {
+    "src": "./media/projects/aya/15.webp",
+    "width": 1800,
+    "height": 1013
+  },
+  "aya16": {
+    "src": "./media/projects/aya/16.webp",
+    "width": 1800,
+    "height": 1013
+  },
+  "reground01": {
+    "src": "./media/projects/reground/01.webp",
+    "width": 1800,
+    "height": 1013
+  },
+  "reground02": {
+    "src": "./media/projects/reground/02.webp",
+    "width": 1800,
+    "height": 1013
+  },
+  "reground03": {
+    "src": "./media/projects/reground/03.webp",
+    "width": 1800,
+    "height": 1523
+  },
+  "reground04": {
+    "src": "./media/projects/reground/04.webp",
+    "width": 1800,
+    "height": 1013
+  },
+  "reground05": {
+    "src": "./media/projects/reground/05.webp",
+    "width": 1800,
+    "height": 1013
+  },
+  "reground06": {
+    "src": "./media/projects/reground/06.webp",
+    "width": 1800,
+    "height": 1013
+  },
+  "reground07": {
+    "src": "./media/projects/reground/07.webp",
+    "width": 1800,
+    "height": 1013
+  },
+  "reground08": {
+    "src": "./media/projects/reground/08.webp",
+    "width": 1800,
+    "height": 2264
+  },
+  "reground09": {
+    "src": "./media/projects/reground/09.webp",
+    "width": 1800,
+    "height": 1013
+  },
+  "reground10": {
+    "src": "./media/projects/reground/10.webp",
+    "width": 1800,
+    "height": 1323
+  },
+  "everlife01": {
+    "src": "./media/projects/everlife/01.webp",
+    "width": 1800,
+    "height": 1013
+  },
+  "everlife02": {
+    "src": "./media/projects/everlife/02.webp",
+    "width": 1800,
+    "height": 1013
+  },
+  "everlife03": {
+    "src": "./media/projects/everlife/03.webp",
+    "width": 1800,
+    "height": 1013
+  },
+  "everlife04": {
+    "src": "./media/projects/everlife/04.webp",
+    "width": 1800,
+    "height": 1013
+  },
+  "everlife05": {
+    "src": "./media/projects/everlife/05.webp",
+    "width": 1800,
+    "height": 1013
+  },
+  "everlife06": {
+    "src": "./media/projects/everlife/06.webp",
+    "width": 1800,
+    "height": 1013
+  },
+  "everlife07": {
+    "src": "./media/projects/everlife/07.webp",
+    "width": 1800,
+    "height": 1013
+  },
+  "everlife08": {
+    "src": "./media/projects/everlife/08.webp",
+    "width": 1800,
+    "height": 1013
+  },
+  "everlife09": {
+    "src": "./media/projects/everlife/09.webp",
+    "width": 1800,
+    "height": 1013
+  },
+  "everlife10": {
+    "src": "./media/projects/everlife/10.webp",
+    "width": 1800,
+    "height": 476
+  },
+  "everlife11": {
+    "src": "./media/projects/everlife/11.webp",
+    "width": 1800,
+    "height": 1013
+  },
+  "everlife12": {
+    "src": "./media/projects/everlife/12.webp",
+    "width": 1800,
+    "height": 1013
+  },
+  "everlife13": {
+    "src": "./media/projects/everlife/13.webp",
+    "width": 1800,
+    "height": 400
+  },
+  "everlife14": {
+    "src": "./media/projects/everlife/14.webp",
+    "width": 1800,
+    "height": 1013
+  },
+  "everlife15": {
+    "src": "./media/projects/everlife/15.webp",
+    "width": 1800,
+    "height": 1013
+  },
+  "everlife16": {
+    "src": "./media/projects/everlife/16.webp",
+    "width": 1800,
+    "height": 1013
+  },
+  "everlife17": {
+    "src": "./media/projects/everlife/17.webp",
+    "width": 1800,
+    "height": 1013
+  },
+  "everlife18": {
+    "src": "./media/projects/everlife/18.webp",
+    "width": 1800,
+    "height": 1013
+  },
+  "everlife19": {
+    "src": "./media/projects/everlife/19.webp",
+    "width": 1800,
+    "height": 1013
+  },
+  "everlife20": {
+    "src": "./media/projects/everlife/20.webp",
+    "width": 1800,
+    "height": 1013
+  },
+  "everlife21": {
+    "src": "./media/projects/everlife/21.webp",
+    "width": 1800,
+    "height": 1013
+  },
+  "everlife22": {
+    "src": "./media/projects/everlife/22.webp",
+    "width": 1800,
+    "height": 1013
+  },
+  "everlife23": {
+    "src": "./media/projects/everlife/23.webp",
+    "width": 1800,
+    "height": 1013
+  },
+  "business01": {
+    "src": "./media/projects/business/01.webp",
+    "width": 1600,
+    "height": 2228
+  },
+  "business02": {
+    "src": "./media/projects/business/02.webp",
+    "width": 1600,
+    "height": 2228
+  },
+  "business03": {
+    "src": "./media/projects/business/03.webp",
+    "width": 1600,
+    "height": 2228
+  },
+  "business04": {
+    "src": "./media/projects/business/04.webp",
+    "width": 1600,
+    "height": 2228
+  }
+}
